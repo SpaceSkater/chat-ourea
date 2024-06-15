@@ -1,31 +1,21 @@
 import { Button } from "@/components/ui/button"
 import { Github, Bolt } from "lucide-react"
 import ThemeButton from "./ThemeButton"
-import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
+import SettingSheet from "./SettingSheet"
 
 const FirstRightButtons = () => {
   return (
     <div className="flex items-center gap-2">
-      <Sheet>
-        <SheetTrigger>
-          <Button size='icon' variant='outline' asChild>
-            <span>
-              <Bolt size={18} />
-            </span>
-          </Button>
-        </SheetTrigger>
+      {/* setting */}
+      <SettingSheet>
+        <Button size='icon' variant='outline' asChild>
+          <span>
+            <Bolt size={18} />
+          </span>
+        </Button>
+      </SettingSheet>
 
-        <SheetContent>
-          <SheetHeader>
-            <SheetTitle>Are you absolutely sure?</SheetTitle>
-            <SheetDescription>
-              This action cannot be undone. This will permanently delete your account
-              and remove your data from our servers.
-            </SheetDescription>
-          </SheetHeader>
-        </SheetContent>
-      </Sheet>
-
+      {/* github link */}
       <Button size='icon' variant='outline' asChild>
         <a
           aria-label="GitHub"
@@ -36,6 +26,8 @@ const FirstRightButtons = () => {
           <Github size={18} />
         </a>
       </Button>
+
+      {/* theme button */}
       <ThemeButton />
     </div>
   )
