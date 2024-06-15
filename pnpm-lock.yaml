@@ -8,6 +8,12 @@ importers:
 
   .:
     dependencies:
+      '@langchain/core':
+        specifier: ^0.2.6
+        version: 0.2.6(langchain@0.2.5(ignore@5.3.1)(openai@4.51.0))(openai@4.51.0)
+      '@langchain/openai':
+        specifier: ^0.1.3
+        version: 0.1.3(langchain@0.2.5(ignore@5.3.1)(openai@4.51.0))
       '@radix-ui/react-collapsible':
         specifier: ^1.0.3
         version: 1.0.3(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -49,7 +55,7 @@ importers:
         version: 1.1.7(@types/react@18.3.3)(dexie@4.0.7)(react@18.3.1)
       langchain:
         specifier: ^0.2.5
-        version: 0.2.5(ignore@5.3.1)(openai@4.49.0)
+        version: 0.2.5(ignore@5.3.1)(openai@4.51.0)
       lucide-react:
         specifier: ^0.390.0
         version: 0.390.0(react@18.3.1)
@@ -68,6 +74,9 @@ importers:
       react-dom:
         specifier: ^18
         version: 18.3.1(react@18.3.1)
+      react-hook-form:
+        specifier: ^7.51.5
+        version: 7.51.5(react@18.3.1)
       tailwind-merge:
         specifier: ^2.3.0
         version: 2.3.0
@@ -221,8 +230,8 @@ packages:
     resolution: {integrity: sha512-YB9F0vdi/PcgBLSKtDwQ3gV6w4xVfk4ph0U43Okz2dAapKfBkVVB0rzr/afYUt/WHs864MuaO8uLN64egSDtIA==}
     engines: {node: '>=18'}
 
-  '@langchain/openai@0.1.2':
-    resolution: {integrity: sha512-giydNZyEzUBrjZrmQRfnc2SI0+TyAjaVMd8wMKq8O4X/Y3BJd0LFlfD+3MM6Lyu/qaphZ1Ycfr7XR5hY0EcGqQ==}
+  '@langchain/openai@0.1.3':
+    resolution: {integrity: sha512-riv/JC9x2A8b7GcHu8sx+mlZJ8KAwSSi231IPTlcciYnKozmrQ5H0vrtiD31fxiDbaRsk7tyCpkSBIOQEo7CyQ==}
     engines: {node: '>=18'}
 
   '@langchain/textsplitters@0.0.3':
@@ -2187,8 +2196,8 @@ packages:
     resolution: {integrity: sha512-kbpaSSGJTWdAY5KPVeMOKXSrPtr8C8C7wodJbcsd51jRnmD+GZu8Y0VoU6Dm5Z4vWr0Ig/1NKuWRKf7j5aaYSg==}
     engines: {node: '>=6'}
 
-  openai@4.49.0:
-    resolution: {integrity: sha512-/UkrBSej5ejZ4vnOFoeFefX7erjp4k3+xoLKkswjLEvgBU9QtCnOUgsfpvHkzTzgDXpqPMCzyQHQXWsgiq2xPw==}
+  openai@4.51.0:
+    resolution: {integrity: sha512-UKuWc3/qQyklqhHM8CbdXCv0Z0obap6T0ECdcO5oATQxAbKE5Ky3YCXFQY207z+eGG6ez4U9wvAcuMygxhmStg==}
     hasBin: true
 
   openapi-types@12.1.3:
@@ -2347,6 +2356,12 @@ packages:
     resolution: {integrity: sha512-5m4nQKp+rZRb09LNH59GM4BxTh9251/ylbKIbpe7TpGxfJ+9kv6BLkLBXIjjspbgbnIBNqlI23tRnTWT0snUIw==}
     peerDependencies:
       react: ^18.3.1
+
+  react-hook-form@7.51.5:
+    resolution: {integrity: sha512-J2ILT5gWx1XUIJRETiA7M19iXHlG74+6O3KApzvqB/w8S5NQR7AbU8HVZrMALdmDgWpRPYiZJl0zx8Z4L2mP6Q==}
+    engines: {node: '>=12.22.0'}
+    peerDependencies:
+      react: ^16.8.0 || ^17 || ^18
 
   react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
@@ -2969,13 +2984,13 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.4.15
 
-  '@langchain/core@0.2.6(langchain@0.2.5(ignore@5.3.1)(openai@4.49.0))(openai@4.49.0)':
+  '@langchain/core@0.2.6(langchain@0.2.5(ignore@5.3.1)(openai@4.51.0))(openai@4.51.0)':
     dependencies:
       ansi-styles: 5.2.0
       camelcase: 6.3.0
       decamelize: 1.2.0
       js-tiktoken: 1.0.12
-      langsmith: 0.1.30(@langchain/core@0.2.6(langchain@0.2.5(ignore@5.3.1)(openai@4.49.0))(openai@4.49.0))(langchain@0.2.5(ignore@5.3.1)(openai@4.49.0))(openai@4.49.0)
+      langsmith: 0.1.30(@langchain/core@0.2.6(langchain@0.2.5(ignore@5.3.1)(openai@4.51.0))(openai@4.51.0))(langchain@0.2.5(ignore@5.3.1)(openai@4.51.0))(openai@4.51.0)
       ml-distance: 4.0.1
       mustache: 4.2.0
       p-queue: 6.6.2
@@ -2987,20 +3002,20 @@ snapshots:
       - langchain
       - openai
 
-  '@langchain/openai@0.1.2(langchain@0.2.5(ignore@5.3.1)(openai@4.49.0))':
+  '@langchain/openai@0.1.3(langchain@0.2.5(ignore@5.3.1)(openai@4.51.0))':
     dependencies:
-      '@langchain/core': 0.2.6(langchain@0.2.5(ignore@5.3.1)(openai@4.49.0))(openai@4.49.0)
+      '@langchain/core': 0.2.6(langchain@0.2.5(ignore@5.3.1)(openai@4.51.0))(openai@4.51.0)
       js-tiktoken: 1.0.12
-      openai: 4.49.0
+      openai: 4.51.0
       zod: 3.23.8
       zod-to-json-schema: 3.23.0(zod@3.23.8)
     transitivePeerDependencies:
       - encoding
       - langchain
 
-  '@langchain/textsplitters@0.0.3(langchain@0.2.5(ignore@5.3.1)(openai@4.49.0))(openai@4.49.0)':
+  '@langchain/textsplitters@0.0.3(langchain@0.2.5(ignore@5.3.1)(openai@4.51.0))(openai@4.51.0)':
     dependencies:
-      '@langchain/core': 0.2.6(langchain@0.2.5(ignore@5.3.1)(openai@4.49.0))(openai@4.49.0)
+      '@langchain/core': 0.2.6(langchain@0.2.5(ignore@5.3.1)(openai@4.51.0))(openai@4.51.0)
       js-tiktoken: 1.0.12
     transitivePeerDependencies:
       - langchain
@@ -4786,17 +4801,17 @@ snapshots:
     dependencies:
       json-buffer: 3.0.1
 
-  langchain@0.2.5(ignore@5.3.1)(openai@4.49.0):
+  langchain@0.2.5(ignore@5.3.1)(openai@4.51.0):
     dependencies:
-      '@langchain/core': 0.2.6(langchain@0.2.5(ignore@5.3.1)(openai@4.49.0))(openai@4.49.0)
-      '@langchain/openai': 0.1.2(langchain@0.2.5(ignore@5.3.1)(openai@4.49.0))
-      '@langchain/textsplitters': 0.0.3(langchain@0.2.5(ignore@5.3.1)(openai@4.49.0))(openai@4.49.0)
+      '@langchain/core': 0.2.6(langchain@0.2.5(ignore@5.3.1)(openai@4.51.0))(openai@4.51.0)
+      '@langchain/openai': 0.1.3(langchain@0.2.5(ignore@5.3.1)(openai@4.51.0))
+      '@langchain/textsplitters': 0.0.3(langchain@0.2.5(ignore@5.3.1)(openai@4.51.0))(openai@4.51.0)
       binary-extensions: 2.3.0
       js-tiktoken: 1.0.12
       js-yaml: 4.1.0
       jsonpointer: 5.0.1
       langchainhub: 0.0.11
-      langsmith: 0.1.30(@langchain/core@0.2.6(langchain@0.2.5(ignore@5.3.1)(openai@4.49.0))(openai@4.49.0))(langchain@0.2.5(ignore@5.3.1)(openai@4.49.0))(openai@4.49.0)
+      langsmith: 0.1.30(@langchain/core@0.2.6(langchain@0.2.5(ignore@5.3.1)(openai@4.51.0))(openai@4.51.0))(langchain@0.2.5(ignore@5.3.1)(openai@4.51.0))(openai@4.51.0)
       ml-distance: 4.0.1
       openapi-types: 12.1.3
       p-retry: 4.6.2
@@ -4812,7 +4827,7 @@ snapshots:
 
   langchainhub@0.0.11: {}
 
-  langsmith@0.1.30(@langchain/core@0.2.6(langchain@0.2.5(ignore@5.3.1)(openai@4.49.0))(openai@4.49.0))(langchain@0.2.5(ignore@5.3.1)(openai@4.49.0))(openai@4.49.0):
+  langsmith@0.1.30(@langchain/core@0.2.6(langchain@0.2.5(ignore@5.3.1)(openai@4.51.0))(openai@4.51.0))(langchain@0.2.5(ignore@5.3.1)(openai@4.51.0))(openai@4.51.0):
     dependencies:
       '@types/uuid': 9.0.8
       commander: 10.0.1
@@ -4820,9 +4835,9 @@ snapshots:
       p-retry: 4.6.2
       uuid: 9.0.1
     optionalDependencies:
-      '@langchain/core': 0.2.6(langchain@0.2.5(ignore@5.3.1)(openai@4.49.0))(openai@4.49.0)
-      langchain: 0.2.5(ignore@5.3.1)(openai@4.49.0)
-      openai: 4.49.0
+      '@langchain/core': 0.2.6(langchain@0.2.5(ignore@5.3.1)(openai@4.51.0))(openai@4.51.0)
+      langchain: 0.2.5(ignore@5.3.1)(openai@4.51.0)
+      openai: 4.51.0
 
   language-subtag-registry@0.3.23: {}
 
@@ -5047,7 +5062,7 @@ snapshots:
     dependencies:
       mimic-fn: 2.1.0
 
-  openai@4.49.0:
+  openai@4.51.0:
     dependencies:
       '@types/node': 18.19.34
       '@types/node-fetch': 2.6.11
@@ -5208,6 +5223,10 @@ snapshots:
       loose-envify: 1.4.0
       react: 18.3.1
       scheduler: 0.23.2
+
+  react-hook-form@7.51.5(react@18.3.1):
+    dependencies:
+      react: 18.3.1
 
   react-is@16.13.1: {}
 
