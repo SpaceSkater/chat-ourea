@@ -9,6 +9,7 @@ type MessagesStore = {
   messages: MessageType[];
   addInputMessage: (newMessage: MessageType) => void;
   updateMessages: (newMessages: MessageType[]) => void;
+  deleteMessage: (index: number) => void;
 };
 
 export const useMessagesStore = create<MessagesStore>((set) => ({
@@ -18,4 +19,9 @@ export const useMessagesStore = create<MessagesStore>((set) => ({
   // updateAssistantMessage: (content: string) => set(state => { })
   updateMessages: (newMessages: MessageType[]) =>
     set({ messages: newMessages }),
+  deleteMessage: (index: number) =>
+    set((state) => {
+      const afterDeleteMessages = state.messages.filter((_, i) => i !== index);
+      return { messages: afterDeleteMessages };
+    }),
 }));
