@@ -1,12 +1,11 @@
-import FirstRightButtons from "./FirstRightButtons";
 import SecondHead from "./SecondHead";
-import Tabs from "./Tabs";
+import FirstRightButtons from "./FirstRightButtons";
 const Head = () => {
   return (
     <div className="border-b">
       {/* First head */}
-      <div className="pt-2 px-2">
-        <div className="flex justify-between items-center">
+      <div className="px-2 pt-2">
+        <div className="flex items-center justify-between">
           <div>Logo</div>
           <FirstRightButtons />
         </div>
@@ -14,13 +13,16 @@ const Head = () => {
       {/* head tabs */}
       <SecondHead />
     </div>
-  )
+  );
+};
+
+export default Head;
+
+{
+  /* Modle select */
 }
-
-export default Head
-
-{/* Modle select */ }
-{/* <div className="flex items-center gap-2">
+{
+  /* <div className="flex items-center gap-2">
 <Select>
   <SelectTrigger>
     <SelectValue placeholder='Select a Model' />
@@ -41,4 +43,5 @@ export default Head
     </SelectGroup>
   </SelectContent>
 </Select>
-</div> */}
+</div> */
+}

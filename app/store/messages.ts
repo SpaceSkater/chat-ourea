@@ -16,9 +16,7 @@ export const useMessagesStore = create<MessagesStore>((set) => ({
   messages: [],
   addInputMessage: (newMessage: MessageType) =>
     set((state) => ({ messages: [...state.messages, newMessage] })),
-  // updateAssistantMessage: (content: string) => set(state => { })
-  updateMessages: (newMessages: MessageType[]) =>
-    set({ messages: newMessages }),
+  updateMessages: (newMessages: MessageType[]) => set({ messages: newMessages }),
   deleteMessage: (index: number) =>
     set((state) => {
       const afterDeleteMessages = state.messages.filter((_, i) => i !== index);

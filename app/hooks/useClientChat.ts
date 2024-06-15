@@ -15,10 +15,7 @@ function useClientChat({ onError }: useClientChatPropa) {
   const { messages, addInputMessage, updateMessages } = useMessagesStore();
 
   async function sendToLLM({ input }: sendToLLM) {
-    const newMessages = [
-      ...messages,
-      { role: "user", content: input },
-    ] as MessageType[];
+    const newMessages = [...messages, { role: "user", content: input }] as MessageType[];
     addInputMessage({ role: "user", content: input });
 
     const prompt = outputPrompt(newMessages);
@@ -31,10 +28,7 @@ function useClientChat({ onError }: useClientChatPropa) {
       let textContent = "";
       for await (const chunk of streamResponse) {
         textContent += chunk;
-        updateMessages([
-          ...newMessages,
-          { role: "assistant", content: textContent },
-        ]);
+        updateMessages([...newMessages, { role: "assistant", content: textContent }]);
       }
     } catch (error) {
       if (onError) onError(error);

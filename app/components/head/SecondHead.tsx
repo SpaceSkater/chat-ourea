@@ -1,10 +1,15 @@
-import { Button } from "@/components/ui/button"
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
-import { Eraser, ImageDown, MessageSquarePlus } from "lucide-react"
-import Tabs from "./Tabs"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { Button } from "@/components/ui/button";
+import { Eraser, ImageDown, MessageSquarePlus } from "lucide-react";
+import Tabs from "./Tabs";
 const SecondHead = () => {
   return (
-    <div className="max-w-5xl mx-auto px-2 pt-2">
+    <div className="mx-auto max-w-5xl px-2 pt-2">
       <div className="flex justify-between">
         {/* Tabs */}
         <Tabs />
@@ -14,7 +19,7 @@ const SecondHead = () => {
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger asChild>
-                <Button size='icon' variant='outline'>
+                <Button size="icon" variant="outline">
                   <MessageSquarePlus size={18} />
                 </Button>
               </TooltipTrigger>
@@ -27,7 +32,7 @@ const SecondHead = () => {
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger asChild>
-                <Button size='icon' variant='outline'>
+                <Button size="icon" variant="outline">
                   <Eraser size={18} />
                 </Button>
               </TooltipTrigger>
@@ -40,7 +45,7 @@ const SecondHead = () => {
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger asChild>
-                <Button size='icon' variant='outline'>
+                <Button size="icon" variant="outline">
                   <ImageDown size={18} />
                 </Button>
               </TooltipTrigger>
@@ -52,7 +57,7 @@ const SecondHead = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default SecondHead
+export default SecondHead;

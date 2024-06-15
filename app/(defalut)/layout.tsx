@@ -5,7 +5,6 @@ import { ThemeProvider } from "@/components/theme-provider";
 import Head from "../components/head/Head";
 import Input from "../components/input/Input";
 
-
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -27,7 +26,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <main className="h-screen grid grid-rows-[auto_1fr_auto] ">
+          <main className="grid h-screen grid-rows-[auto_1fr_auto]">
             <Head />
             {children}
             <Input />
