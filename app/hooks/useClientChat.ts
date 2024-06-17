@@ -12,9 +12,10 @@ type useClientChatPropa = {
 
 function useClientChat({ onError }: useClientChatPropa) {
   const { model, apiKey, baseURL } = useOptionsStore();
-  const { messages, addInputMessage, updateMessages } = useMessagesStore();
+  const { messages, addInputMessage, updateMessages, setIsPending } = useMessagesStore();
 
   async function sendToLLM({ input }: sendToLLM) {
+    setIsPending(true);
     const newMessages = [...messages, { role: "user", content: input }] as MessageType[];
     addInputMessage({ role: "user", content: input });
 
@@ -30,7 +31,10 @@ function useClientChat({ onError }: useClientChatPropa) {
         textContent += chunk;
         updateMessages([...newMessages, { role: "assistant", content: textContent }]);
       }
+
+      setIsPending(false);
     } catch (error) {
+      setIsPending(false);
       if (onError) onError(error);
     }
   }

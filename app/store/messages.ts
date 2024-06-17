@@ -7,6 +7,8 @@ export type MessageType = {
 
 type MessagesStore = {
   messages: MessageType[];
+  isPending: boolean;
+  setIsPending: (isPending: boolean) => void;
   addInputMessage: (newMessage: MessageType) => void;
   updateMessages: (newMessages: MessageType[]) => void;
   deleteMessage: (index: number) => void;
@@ -14,6 +16,8 @@ type MessagesStore = {
 
 export const useMessagesStore = create<MessagesStore>((set) => ({
   messages: [],
+  isPending: false,
+  setIsPending: (isPending: boolean) => set({ isPending }),
   addInputMessage: (newMessage: MessageType) =>
     set((state) => ({ messages: [...state.messages, newMessage] })),
   updateMessages: (newMessages: MessageType[]) => set({ messages: newMessages }),

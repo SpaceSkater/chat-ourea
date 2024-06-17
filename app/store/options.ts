@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-type OptionsStore = {
+type OptionsType = {
   model: string;
   baseURL: string;
   apiKey: string;
@@ -9,7 +9,7 @@ type OptionsStore = {
   setApiKey: (apiKey: string) => void;
 };
 
-export const useOptionsStore = create<OptionsStore>((set) => ({
+export const useOptionsStore = create<OptionsType>((set) => ({
   model: "gpt-3.5-turbo",
   baseURL: "https://aihubmix.com/v1",
   apiKey: "sk-IROh3pr6Nj91RvT77cE8Da3d87194eC9AaDd2189E975B42f",

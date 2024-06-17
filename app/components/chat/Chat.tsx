@@ -1,10 +1,11 @@
 "use client";
+import "./index.css";
+import { cn } from "@/lib/utils";
 import {
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
-import { cn } from "@/lib/utils";
 import { Copy, Trash2 } from "lucide-react";
 import ContentMarkdown from "./ContentMarkdown";
 import { useMessagesStore } from "@/app/store/messages";
@@ -12,7 +13,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import useScrollToBottom from "@/app/hooks/useScrollToBottom";
 
 const Chat = () => {
-  const { messages, deleteMessage } = useMessagesStore();
+  const { messages, isPending, deleteMessage } = useMessagesStore();
   const { ref } = useScrollToBottom(messages);
   function handleCopy(content: string) {
     navigator.clipboard.writeText(content);
@@ -62,6 +63,11 @@ const Chat = () => {
         </div>
       ))}
       <div ref={ref}></div>
+      {isPending && (
+        <div className="absolute -bottom-2 left-2 border-[1.5px] border-zinc-600 ring dark:border-zinc-400">
+          <div className="planet bg-zinc-700 dark:bg-zinc-400"></div>
+        </div>
+      )}
     </ScrollArea>
   );
 };
