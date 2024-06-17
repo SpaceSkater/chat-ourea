@@ -23,7 +23,7 @@ const Input = () => {
     reset({ input: "" });
   }
   return (
-    <div className="border-t">
+    <div className="z-50 border-t">
       <div className="relative mx-auto max-w-5xl p-2 md:border-x">
         <div className="w-full space-y-2">
           {/* <div className="flex justify-end rounded-md">

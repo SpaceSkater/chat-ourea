@@ -63,8 +63,9 @@ const Chat = () => {
         </div>
       ))}
       <div ref={ref}></div>
+
       {isPending && (
-        <div className="absolute -bottom-2 left-2 border-[1.5px] border-zinc-600 ring dark:border-zinc-400">
+        <div className="absolute -bottom-2 left-[45%] border-[1.5px] border-zinc-600 ring dark:border-zinc-400">
           <div className="planet bg-zinc-700 dark:bg-zinc-400"></div>
         </div>
       )}
