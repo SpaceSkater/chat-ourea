@@ -3,7 +3,6 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import Head from "../components/head/Head";
-import Input from "../components/input/Input";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -29,7 +28,6 @@ export default function RootLayout({
           <main className="grid h-screen grid-rows-[auto_1fr_auto]">
             <Head />
             {children}
-            <Input />
           </main>
         </ThemeProvider>
       </body>

@@ -1,8 +1,12 @@
 "use client";
-import { Forward } from "lucide-react";
 import { useForm } from "react-hook-form";
-import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import useClientChat from "@/app/hooks/useClientChat";
 import { Eraser, ImageDown, MessageSquarePlus, SendHorizontal } from "lucide-react";
 
@@ -23,7 +27,7 @@ const Input = () => {
     reset({ input: "" });
   }
   return (
-    <div className="z-50 border-t">
+    <div className="z-50 border-t bg-white dark:bg-black">
       <div className="relative mx-auto max-w-5xl p-2 md:border-x">
         <div className="w-full space-y-2">
           {/* <div className="flex justify-end rounded-md">
@@ -55,12 +59,21 @@ const Input = () => {
           </div>
         </div>
 
-        <button
-          className="absolute bottom-4 right-4 p-1 hover:text-zinc-400"
-          onClick={handleSubmit(onSubmit)}
-        >
-          <SendHorizontal size={20} />
-        </button>
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <button
+                className="absolute bottom-4 right-4 p-1 hover:text-zinc-400"
+                onClick={handleSubmit(onSubmit)}
+              >
+                <SendHorizontal size={20} />
+              </button>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>Send</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
       </div>
     </div>
   );
