@@ -16,6 +16,13 @@ const ContentMarkdown = ({ content }: { content: string }) => {
             </p>
           );
         },
+        a({ node, children, ...props }) {
+          return (
+            <a className="text-blue-500 hover:underline" {...props}>
+              {children}
+            </a>
+          );
+        },
         code({ node, className, children, ...props }) {
           const match = /language-(\w+)/.exec(className || "");
           return match ? (

@@ -1,20 +1,24 @@
 import { useOptionsStore } from "../store/options";
-import { useMessagesStore, MessageType } from "../store/messages";
-import { outputPrompt, fetchOnLangchain } from "../services/langchain";
+import { useMessagesStore, useSearchStore, MessageType } from "../store/messages";
+import { outputPrompt, fetchOnLangchain, fetchOnWebSearch } from "../services/langchain";
 
 type sendToLLM = {
   input: string;
 };
 
-type useClientChatPropa = {
-  onError?: (error: any) => void;
-};
+type Error = (error: any) => void;
 
-function useClientChat({ onError }: useClientChatPropa) {
-  const { model, apiKey, baseURL } = useOptionsStore();
+function useClientChat(onError?: Error) {
+  const { model, apiKey, searchApiKey, baseURL } = useOptionsStore();
   const { messages, addInputMessage, updateMessages, setIsPending } = useMessagesStore();
+  const {
+    setIsPending: setIsSearching,
+    addSearchInput,
+    updateSearchResults,
+    setSearchContext,
+  } = useSearchStore();
 
-  async function sendToLLM({ input }: sendToLLM) {
+  async function chatToLLM({ input }: sendToLLM) {
     setIsPending(true);
     const newMessages = [...messages, { role: "user", content: input }] as MessageType[];
     addInputMessage({ role: "user", content: input });
@@ -35,11 +39,48 @@ function useClientChat({ onError }: useClientChatPropa) {
       setIsPending(false);
     } catch (error) {
       setIsPending(false);
-      if (onError) onError(error);
+      onError && onError(error);
     }
   }
 
-  return { sendToLLM };
+  async function webSearch({ input }: sendToLLM) {
+    setIsSearching(true);
+    addSearchInput(input);
+    try {
+      const streamResponse = await fetchOnWebSearch({
+        question: input,
+        options: {
+          apiKey,
+          baseURL,
+          searchApiKey,
+        },
+      });
+
+      if (!streamResponse) {
+        setIsPending(false);
+        return;
+      }
+
+      let searchText = "";
+      for await (const chunk of streamResponse) {
+        if (chunk.context) {
+          setSearchContext(chunk.context);
+        }
+        if (chunk.answer) {
+          searchText += chunk.answer;
+          updateSearchResults(searchText);
+        }
+      }
+
+      setIsSearching(false);
+      return streamResponse;
+    } catch (error) {
+      setIsSearching(false);
+      onError && onError(error);
+    }
+  }
+
+  return { chatToLLM, webSearch };
 }
 
 export default useClientChat;

@@ -15,7 +15,9 @@ type Inputs = {
 };
 
 const Input = () => {
-  const { sendToLLM } = useClientChat({});
+  const { chatToLLM } = useClientChat((err) => {
+    console.error(err);
+  });
   const {
     register,
     reset,
@@ -23,7 +25,7 @@ const Input = () => {
     formState: { errors },
   } = useForm<Inputs>();
   function onSubmit(data: Inputs) {
-    sendToLLM({ input: data.input });
+    chatToLLM({ input: data.input });
     reset({ input: "" });
   }
   return (
