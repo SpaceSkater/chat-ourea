@@ -9,7 +9,7 @@ type sendToLLM = {
 type Error = (error: any) => void;
 
 function useClientChat(onError?: Error) {
-  const { model, apiKey, searchApiKey, baseURL } = useOptionsStore();
+  const { model, apiKey, searchKey, baseURL } = useOptionsStore();
   const { messages, addInputMessage, updateMessages, setIsPending } = useMessagesStore();
   const {
     setIsPending: setIsSearching,
@@ -52,7 +52,7 @@ function useClientChat(onError?: Error) {
         options: {
           apiKey,
           baseURL,
-          searchApiKey,
+          searchKey,
         },
       });
 

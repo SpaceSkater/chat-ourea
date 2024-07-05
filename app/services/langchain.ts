@@ -4,14 +4,13 @@ import {
   SystemMessage,
   MessageType,
 } from "@langchain/core/messages";
-import { StringOutputParser } from "@langchain/core/output_parsers";
-import { MessageType as ClientMessageType } from "../store/messages";
 import { LLM } from "../shared/models";
-
 import { TokenTextSplitter } from "langchain/text_splitter";
+import { ChatPromptTemplate } from "@langchain/core/prompts";
 import { MemoryVectorStore } from "langchain/vectorstores/memory";
 import { createRetrievalChain } from "langchain/chains/retrieval";
-import { ChatPromptTemplate } from "@langchain/core/prompts";
+import { StringOutputParser } from "@langchain/core/output_parsers";
+import { MessageType as ClientMessageType } from "../store/messages";
 import { createStuffDocumentsChain } from "langchain/chains/combine_documents";
 import { SearchApiLoader } from "@langchain/community/document_loaders/web/searchapi";
 
@@ -23,7 +22,7 @@ type ChatOptionsType = {
 
 type SearchOptionsType = {
   apiKey: string;
-  searchApiKey: string;
+  searchKey: string;
   baseURL: string;
 };
 
@@ -65,7 +64,7 @@ export async function fetchOnLangchain({ prompt, options }: fetchOnLangchain) {
 }
 
 export async function fetchOnWebSearch({ question, options }: fetchOnWebSearch) {
-  const { apiKey, baseURL, searchApiKey } = options;
+  const { apiKey, baseURL, searchKey } = options;
   const query = question;
 
   const chatModel = LLM.chatModel({ apiKey, baseURL });
@@ -75,7 +74,7 @@ export async function fetchOnWebSearch({ question, options }: fetchOnWebSearch) 
     // 1. Search
     const loader = new SearchApiLoader({
       q: query,
-      apiKey: searchApiKey,
+      apiKey: searchKey,
       engine: "google",
     });
     const docs = await loader.load();
