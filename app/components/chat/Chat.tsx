@@ -9,7 +9,6 @@ import {
 import { Copy, Trash2 } from "lucide-react";
 import ContentMarkdown from "./ContentMarkdown";
 import { useMessagesStore } from "@/app/store/messages";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import useScrollToBottom from "@/app/hooks/useScrollToBottom";
 
 const Chat = () => {
@@ -19,7 +18,7 @@ const Chat = () => {
     navigator.clipboard.writeText(content);
   }
   return (
-    <ScrollArea className="mx-auto w-full max-w-5xl p-2 md:border-x">
+    <div className="relative mx-auto w-full overflow-hidden overflow-y-scroll p-2 sm:max-w-5xl md:border-x">
       {messages.map((message, index) => (
         <div
           key={index}
@@ -29,7 +28,7 @@ const Chat = () => {
           )}
         >
           <HoverCard>
-            <HoverCardTrigger className="max-w-[85%]">
+            <HoverCardTrigger className="max-w-full sm:max-w-[85%]">
               <div
                 className={cn(
                   "rounded-lg px-3 py-2",
@@ -63,15 +62,17 @@ const Chat = () => {
         </div>
       ))}
       <div ref={ref}></div>
-
-      {/* {isPending && (
-        <div className="absolute -bottom-2 left-[45%] border-[1.5px] border-zinc-600 ring dark:border-zinc-400">
-          <div className="planet bg-zinc-700 dark:bg-zinc-400"></div>
-        </div>
-      )} */}
       {isPending && <div className="absolute bottom-1 animate-pulse">Generating...</div>}
-    </ScrollArea>
+    </div>
   );
 };
 
 export default Chat;
+
+{
+  /* {isPending && (
+        <div className="absolute -bottom-2 left-[45%] border-[1.5px] border-zinc-600 ring dark:border-zinc-400">
+          <div className="planet bg-zinc-700 dark:bg-zinc-400"></div>
+        </div>
+      )} */
+}

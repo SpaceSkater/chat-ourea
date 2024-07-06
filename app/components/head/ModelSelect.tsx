@@ -37,7 +37,7 @@ const ModelSelect = () => {
   }, []);
 
   return (
-    <div className="flex w-[200px] items-center gap-2 pb-2">
+    <div className="flex w-[136px] items-center gap-2 pb-2 sm:w-[200px]">
       <Select value={model || ""} onValueChange={(value) => onChangeModel(value)}>
         <SelectTrigger>
           <SelectValue placeholder="Select a Model" />

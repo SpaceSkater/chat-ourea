@@ -25,7 +25,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <main className="grid h-screen grid-rows-[auto_1fr_auto]">
+          <main className="grid h-screen w-screen grid-rows-[auto_1fr_auto]">
             <Head />
             {children}
           </main>
