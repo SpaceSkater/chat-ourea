@@ -1,10 +1,15 @@
-import { Copy } from "lucide-react";
 import Markdown from "react-markdown";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
+import { Copy, AppWindowMac } from "lucide-react";
 import { CodeBlock, dracula, github } from "react-code-blocks";
 
-const ContentMarkdown = ({ content }: { content: string }) => {
+type Props = {
+  content: string;
+  executeCode: (code: string) => void;
+};
+
+const ContentMarkdown = ({ content, executeCode }: Props) => {
   const { theme } = useTheme();
   return (
     <Markdown
@@ -27,16 +32,28 @@ const ContentMarkdown = ({ content }: { content: string }) => {
           const match = /language-(\w+)/.exec(className || "");
           return match ? (
             <div className="relative">
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() =>
-                  navigator.clipboard.writeText(String(children).replace(/\n$/, ""))
-                }
-                className="absolute right-1 top-1 text-zinc-500"
-              >
-                <Copy size={18} />
-              </Button>
+              <div className="absolute right-1 top-1 flex gap-2">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="bg-background text-zinc-500"
+                  onClick={() => {
+                    executeCode(String(children).replace(/\n$/, ""));
+                  }}
+                >
+                  <AppWindowMac size={18} />
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() =>
+                    navigator.clipboard.writeText(String(children).replace(/\n$/, ""))
+                  }
+                  className="bg-background text-zinc-500"
+                >
+                  <Copy size={18} />
+                </Button>
+              </div>
 
               <CodeBlock
                 customStyle={{

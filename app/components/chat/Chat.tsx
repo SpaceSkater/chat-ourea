@@ -6,64 +6,105 @@ import {
   HoverCardContent,
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
+import { Fragment, useRef } from "react";
 import { Copy, Trash2 } from "lucide-react";
 import ContentMarkdown from "./ContentMarkdown";
+import { Button } from "@/components/ui/button";
 import { useMessagesStore } from "@/app/store/messages";
 import useScrollToBottom from "@/app/hooks/useScrollToBottom";
 
 const Chat = () => {
   const { messages, isPending, deleteMessage } = useMessagesStore();
+  const iframeRef = useRef<HTMLIFrameElement>(null);
   const { ref } = useScrollToBottom(messages);
   function handleCopy(content: string) {
     navigator.clipboard.writeText(content);
   }
-  return (
-    <div className="relative mx-auto w-full overflow-hidden overflow-y-scroll p-2 sm:max-w-5xl md:border-x">
-      {messages.map((message, index) => (
-        <div
-          key={index}
-          className={cn(
-            "mb-4 flex w-full",
-            message.role === "user" ? "justify-end" : "justify-start"
-          )}
-        >
-          <HoverCard>
-            <HoverCardTrigger className="max-w-full sm:max-w-[85%]">
-              <div
-                className={cn(
-                  "rounded-lg px-3 py-2",
-                  message.role === "user"
-                    ? "bg-zinc-600 text-white dark:bg-zinc-100 dark:text-zinc-950"
-                    : "bg-zinc-200 dark:bg-zinc-800"
-                )}
-              >
-                <ContentMarkdown content={message.content} />
-              </div>
-            </HoverCardTrigger>
 
-            <HoverCardContent
-              side={message.role === "user" ? "left" : "right"}
-              align="end"
-              className="w-fit p-2"
-            >
-              <div className="flex gap-2">
-                <span className="hover:text-red-700" onClick={() => deleteMessage(index)}>
-                  <Trash2 size={18} />
-                </span>
-                <span
-                  className="hover:text-zinc-500"
-                  onClick={() => handleCopy(message.content)}
-                >
-                  <Copy size={18} />
-                </span>
-              </div>
-            </HoverCardContent>
-          </HoverCard>
+  const executeCode = (code: string) => {
+    const iframe = iframeRef.current;
+    const document = iframe?.contentDocument;
+
+    if (document) {
+      document.open();
+      document.write(code);
+      document.close();
+    }
+  };
+
+  const clearCode = () => {
+    const iframe = iframeRef.current;
+    const document = iframe?.contentDocument;
+
+    if (document) {
+      document.open();
+      document.write("");
+      document.close();
+    }
+  };
+  return (
+    <Fragment>
+      <div className="absolute bottom-0 right-0 z-[60] h-[80%] w-[22%] rounded-tl-md border border-r-0 bg-background p-4">
+        <div className="flex h-full flex-col gap-4">
+          <iframe
+            ref={iframeRef}
+            className="h-[90%] w-full rounded-sm bg-zinc-50 shadow-inner"
+          />
+          <Button variant="outline" onClick={clearCode}>
+            Clear
+          </Button>
         </div>
-      ))}
-      <div ref={ref}></div>
-      {isPending && <div className="absolute bottom-1 animate-pulse">Generating...</div>}
-    </div>
+      </div>
+
+      <div className="relative mx-auto w-full overflow-hidden overflow-y-scroll p-2 sm:max-w-5xl md:border-x">
+        {messages.map((message, index) => (
+          <div
+            key={index}
+            className={cn(
+              "mb-4 flex w-full",
+              message.role === "user" ? "justify-end" : "justify-start"
+            )}
+          >
+            <HoverCard>
+              <HoverCardTrigger className="max-w-full sm:max-w-[85%]">
+                <div
+                  className={cn(
+                    "rounded-lg px-3 py-2",
+                    message.role === "user"
+                      ? "bg-zinc-600 text-white dark:bg-zinc-100 dark:text-zinc-950"
+                      : "bg-zinc-200 dark:bg-zinc-800"
+                  )}
+                >
+                  <ContentMarkdown content={message.content} executeCode={executeCode} />
+                </div>
+              </HoverCardTrigger>
+
+              <HoverCardContent
+                side={message.role === "user" ? "left" : "right"}
+                align="end"
+                className="w-fit p-2"
+              >
+                <div className="flex gap-2">
+                  <span
+                    className="hover:text-red-700"
+                    onClick={() => deleteMessage(index)}
+                  >
+                    <Trash2 size={18} />
+                  </span>
+                  <span
+                    className="hover:text-zinc-500"
+                    onClick={() => handleCopy(message.content)}
+                  >
+                    <Copy size={18} />
+                  </span>
+                </div>
+              </HoverCardContent>
+            </HoverCard>
+          </div>
+        ))}
+        <div ref={ref}></div>
+      </div>
+    </Fragment>
   );
 };
 
@@ -76,3 +117,7 @@ export default Chat;
         </div>
       )} */
 }
+
+// {isPending && (
+//   <div className="absolute bottom-1 animate-pulse">Generating...</div>
+// )}
